@@ -33,8 +33,22 @@ This project provides a comprehensive guide to building an end-to-end data engin
     ```bash
     cd Smart-City-Realtime-Analytics
     ```
-
-3. Run Docker Compose to spin up the services:
+3. Create Virtual Environment:
     ```bash
-    docker-compose up
+    python<version> -m venv <virtual-environment-name>
+    Example: python3 -m venv myenv
+    ```
+4.  Activate the Virtual Environment:
+    ```bash
+    Mac: source venv-name/bin/activate
+    Windows: env/Scripts/activate.bat (Command Prompt)
+           : env/Scripts/Activate.ps1 (PowerShell)
+    ```
+5. Run Docker Compose to spin up the services:
+    ```bash
+    docker-compose up -d
+    ```
+6. Run the Spark Jobs
+   ```bash
+   docker exec -it spark-master spark-submit --master spark://spark-master:7077 --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1,org.apache.hadoop:hadoop-aws:3.3.1,com.amazonaws:aws-java-sdk:1.11.469 jobs/spark-city.py
     ```
